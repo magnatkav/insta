@@ -1,126 +1,202 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Инста-дашборд</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6efe4;--card:#fffaf2;--ink:#3a2a1e;--muted:#8b7562;--line:#e7d9c6;--acc:#a0672f;--acc2:#d9b48a;--up:#4f7d3a;--down:#b0482f}
-@media (prefers-color-scheme:dark){:root{--bg:#1f1914;--card:#2a221b;--ink:#f1e6d8;--muted:#b49d86;--line:#3d3228;--acc:#d8a26a;--acc2:#7a5634;--up:#93c278;--down:#e48a72}}
+:root{
+  --bg:#efe4d3;--bg2:#e6d6bf;--card:rgba(255,250,242,.72);--card-solid:#fffaf2;--ink:#33241a;--muted:#8c735d;--line:rgba(140,105,70,.18);
+  --acc:#a0672f;--acc-deep:#7a4a1f;--acc-soft:#d9b48a;--gold:#c99a5b;--up:#4f7d3a;--down:#b0482f;
+  --shadow:0 1px 0 rgba(255,255,255,.8) inset,0 18px 40px -22px rgba(95,60,25,.45),0 4px 12px -6px rgba(95,60,25,.18);
+  --glow1:rgba(255,236,206,.9);--glow2:rgba(214,170,118,.35);--side:rgba(255,248,238,.6)}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#1c1511;--bg2:#241a14;--card:rgba(46,35,27,.72);--card-solid:#2e231b;--ink:#f3e7d7;--muted:#b59c84;--line:rgba(230,190,140,.12);
+  --acc:#e0a96d;--acc-deep:#f2c48f;--acc-soft:#8a5f37;--gold:#d8a865;--up:#9cc77f;--down:#ec907a;
+  --shadow:0 1px 0 rgba(255,220,180,.06) inset,0 22px 46px -24px rgba(0,0,0,.8),0 4px 14px -6px rgba(0,0,0,.5);
+  --glow1:rgba(120,78,40,.35);--glow2:rgba(201,140,70,.12);--side:rgba(36,27,21,.7)}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
-.w{max-width:1000px;margin:0 auto;padding:18px 16px 60px}
-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
-h1{font-size:22px;margin:0}
-.tabs{display:flex;gap:6px}
-.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 16px;border-radius:999px;font-size:15px;cursor:pointer}
-.tabs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
-.meta{color:var(--muted);font-size:13px;margin:0 0 18px}
-.meta a{color:var(--acc)}
-h2{font-size:17px;margin:26px 0 4px}
-.hint{color:var(--muted);font-size:13px;margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
-.c .l{color:var(--muted);font-size:13px}.c .v{font-size:24px;font-weight:700;margin-top:2px}.c .s{font-size:12px;color:var(--muted)}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 Manrope,system-ui,sans-serif;min-height:100vh;
+  background-image:radial-gradient(900px 600px at 85% -10%,var(--glow1),transparent 60%),radial-gradient(700px 500px at -10% 40%,var(--glow2),transparent 60%),radial-gradient(800px 600px at 60% 110%,var(--glow2),transparent 60%);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .2 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:100vh;position:relative}
+aside{position:sticky;top:0;height:100vh;padding:26px 18px;display:flex;flex-direction:column;gap:26px;background:var(--side);backdrop-filter:blur(14px);border-right:1px solid var(--line)}
+.logo{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:26px;line-height:.95;letter-spacing:.02em;color:var(--acc-deep)}
+.logo small{display:block;font:600 10px/1.6 Manrope;letter-spacing:.28em;color:var(--muted);margin-top:8px;text-transform:uppercase}
+nav{display:flex;flex-direction:column;gap:2px}
+nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-size:14px;font-weight:500;transition:.2s}
+nav a:hover{background:var(--card);color:var(--ink)}
+nav a.on{background:var(--card-solid);color:var(--ink);box-shadow:var(--shadow)}
+.accs{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.acc{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;border:1px solid transparent;background:none;color:var(--ink);cursor:pointer;text-align:left;font:inherit;transition:.2s}
+.acc:hover{background:var(--card)}
+.acc.on{background:var(--card-solid);box-shadow:var(--shadow);border-color:var(--line)}
+.acc b{display:block;font-size:14px}.acc div span{display:block;font-size:12px;color:var(--muted)}
+.pearl{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:700 11px Manrope;color:#5a3714;letter-spacing:.04em;
+  background:radial-gradient(circle at 32% 28%,#fffaf0 0,#f4dfbf 22%,#d8ac72 58%,#9a6531 100%);box-shadow:0 6px 14px -4px rgba(120,70,25,.55),inset -3px -4px 8px rgba(110,60,20,.35)}
+main{padding:34px 40px 70px;max-width:1240px;width:100%;min-width:0}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:44px;line-height:1.05;margin:6px 0 8px;letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--acc)}
+.meta{color:var(--muted);font-size:13px;margin:0 0 26px}.meta a{color:var(--acc);text-decoration:none;border-bottom:1px solid var(--acc-soft)}
+h2{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:30px;margin:46px 0 4px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+h2 small{font:500 13px Manrope;color:var(--muted)}
+.hint{color:var(--muted);font-size:12.5px;margin:10px 2px 0;max-width:820px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:14px}
+.card{position:relative;overflow:hidden;background:var(--card);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:20px;padding:18px 20px 16px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-2px)}
+.card:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(145deg,rgba(255,255,255,.55),transparent 40%);opacity:.6}
+@media (prefers-color-scheme:dark){.card:after{background:linear-gradient(145deg,rgba(255,220,180,.07),transparent 40%)}}
+.lbl{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.val{font-family:"Cormorant Garamond",serif;font-size:42px;font-weight:700;line-height:1.05;margin-top:6px;letter-spacing:-.01em}
+.val.up{color:var(--up)}.val.down{color:var(--down)}.val.na{color:var(--acc-soft)}
+.sub{font-size:12px;color:var(--muted);margin-top:4px;position:relative;z-index:1;max-width:75%}
+.deco{position:absolute;right:14px;bottom:12px;opacity:.95}
+.mini{display:flex;flex-direction:column;gap:12px;margin-top:22px;padding-top:16px;border-top:1px dashed var(--line);position:relative;z-index:1}
+.mini div{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}.mini b{color:var(--ink);font-weight:700}
+.wide{display:grid;grid-template-columns:260px minmax(0,1fr);gap:14px;margin-top:14px}
+.chart{padding:18px 20px}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.empty{display:grid;place-items:center;min-height:170px;color:var(--muted);font-size:14px;text-align:center;gap:10px}
+.two{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:18px;align-items:start}
+.tw{overflow-x:auto;margin-top:14px;padding:6px 6px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:10px 10px;text-align:left;white-space:nowrap}
+th{color:var(--muted);font-weight:700;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+tbody tr{transition:background .2s}tbody tr:hover{background:rgba(201,154,91,.1)}
+td{border-bottom:1px solid var(--line)}tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+td.cap{max-width:260px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:12.5px}
+td a{color:var(--acc-deep);text-decoration:none;font-weight:700}
+td .rk{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:800;margin-right:6px;color:#5a3714;background:radial-gradient(circle at 32% 28%,#fffaf0,#e9cb9c 45%,#c08a4f)}
 .up{color:var(--up)}.down{color:var(--down)}
-.chart{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}
-.chart svg{width:100%;height:auto;display:block}
-.empty{color:var(--muted);font-size:14px;padding:18px;text-align:center}
-.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:10px}
-table{border-collapse:collapse;width:100%;font-size:14px}
-th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
-th{color:var(--muted);font-weight:600;font-size:12px}
-td.n,th.n{text-align:right}
-td.cap{white-space:normal;min-width:220px;max-width:360px;color:var(--muted);font-size:13px}
-tr:last-child td{border-bottom:0}
-@media (max-width:600px){td.cap{white-space:nowrap;min-width:0;max-width:240px;overflow:hidden;text-overflow:ellipsis}}
-td a{color:var(--acc);text-decoration:none}
-</style></head><body><div class="w">
-<header><h1 id="h">Instagram</h1><div class="tabs" id="tabs"></div></header>
-<p class="meta" id="meta">Загрузка…</p>
-<div id="app"></div>
+.tip{position:fixed;pointer-events:none;background:var(--card-solid);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:10px;padding:6px 10px;font-size:12px;opacity:0;transition:opacity .15s;z-index:9}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:minmax(0,1fr)}.wide{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:820px){
+  .layout{grid-template-columns:1fr}
+  aside{position:sticky;top:0;z-index:5;height:auto;flex-direction:row;align-items:center;padding:10px 16px;gap:10px;border-right:0;border-bottom:1px solid var(--line)}
+  .logo{font-size:18px}.logo small,nav{display:none}
+  .accs{margin:0 0 0 auto;flex-direction:row;gap:6px}.acc{padding:6px 8px;gap:6px}.acc div span{display:none}.acc b{font-size:12px}.pearl{width:26px;height:26px;font-size:9px}
+  main{padding:22px 16px 60px}h1{font-size:34px}h2{font-size:26px}.val{font-size:34px}.grid{gap:10px}.card{padding:14px 14px 12px;border-radius:16px}
+  .deco{transform:scale(.75);transform-origin:bottom right}.sub{max-width:100%}
+}
+</style></head><body>
+<div class="layout">
+<aside>
+  <div class="logo">Инста<br>дашборд<small>RU · US</small></div>
+  <nav id="nav"><a href="#overview" class="on">Обзор</a><a href="#views">Просмотры</a><a href="#reels">Рилсы</a><a href="#top">Топ по просмотрам</a></nav>
+  <div class="accs" id="accs"></div>
+</aside>
+<main>
+  <div class="eyebrow" id="overview">Instagram · <span id="acct"></span></div>
+  <h1>Подписчики и <em>результаты</em> рилсов</h1>
+  <p class="meta" id="meta">Загрузка…</p>
+  <div id="app"></div>
+</main>
 </div>
+<div class="tip" id="tip"></div>
 <script>
 const fmt=n=>n==null?'—':Math.round(n).toLocaleString('ru-RU');
-const sign=n=>n==null?'—':(n>0?'+':'')+fmt(n);
+const sign=n=>n==null?'—':(n>0?'+':n<0?'−':'')+fmt(Math.abs(n));
 const cls=n=>n>0?'up':n<0?'down':'';
 const dshort=s=>{const[y,m,d]=s.slice(0,10).split('-');return d+'.'+m};
 const addDays=(s,k)=>{const t=new Date(s+'T00:00:00Z');t.setUTCDate(t.getUTCDate()+k);return t.toISOString().slice(0,10)};
 const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let DATA,CUR;
-try{CUR=localStorage.getItem('acc')||'ru'}catch(e){CUR='ru'}
+let DATA,CUR;try{CUR=localStorage.getItem('acc')||'ru'}catch(e){CUR='ru'}
 
-function valueAt(series,date){ // последнее значение на дату или раньше
-  let best=null;for(const d of Object.keys(series).sort()){if(d<=date)best=series[d];}return best}
+// декор карточек: жемчужина и «шаги»
+const pearl=(s=34)=>`<svg class="deco" width="${s}" height="${s}" viewBox="0 0 40 40"><defs><radialGradient id="pg${s}" cx="32%" cy="28%" r="75%"><stop offset="0" stop-color="#fffaf0"/><stop offset=".25" stop-color="#f3dcb8"/><stop offset=".62" stop-color="#d4a466"/><stop offset="1" stop-color="#8f5a29"/></radialGradient></defs><ellipse cx="20" cy="37" rx="12" ry="2.2" fill="#7a4a1f" opacity=".18"/><circle cx="20" cy="18" r="15" fill="url(#pg${s})"/><ellipse cx="14" cy="11" rx="4.5" ry="2.6" fill="#fff" opacity=".7" transform="rotate(-30 14 11)"/></svg>`;
+const ring=()=>`<svg class="deco" width="54" height="34" viewBox="0 0 54 34"><defs><radialGradient id="rg" cx="32%" cy="28%" r="75%"><stop offset="0" stop-color="#fffaf0"/><stop offset=".6" stop-color="#d4a466"/><stop offset="1" stop-color="#8f5a29"/></radialGradient></defs><circle cx="27" cy="17" r="11" fill="url(#rg)"/><ellipse cx="27" cy="18" rx="25" ry="6" fill="none" stroke="var(--gold)" stroke-width="1.6" opacity=".8"/><path d="M8 20a25 6 0 0 0 38 0" fill="none" stroke="var(--gold)" stroke-width="1.6"/></svg>`;
+const steps=()=>`<svg class="deco" width="56" height="40" viewBox="0 0 56 40" fill="var(--gold)"><g opacity=".85"><ellipse cx="8" cy="33" rx="3" ry="4.6" transform="rotate(-18 8 33)"/><ellipse cx="20" cy="25" rx="3" ry="4.6" transform="rotate(-8 20 25)" opacity=".8"/><ellipse cx="31" cy="20" rx="3" ry="4.6" transform="rotate(-18 31 20)" opacity=".65"/><ellipse cx="43" cy="11" rx="3" ry="4.6" transform="rotate(-8 43 11)" opacity=".5"/></g><circle cx="51" cy="5" r="2.4" fill="var(--acc)"/></svg>`;
+const constel=()=>`<svg class="deco" width="46" height="40" viewBox="0 0 46 40"><path d="M4 34L16 22L26 27L40 6" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="2 3"/>${[[4,34],[16,22],[26,27],[40,6]].map(([x,y],i)=>`<circle cx="${x}" cy="${y}" r="${i==3?3.2:2.2}" fill="${i==3?'var(--acc)':'var(--gold)'}"/>`).join('')}</svg>`;
+const DECO=[pearl,ring,constel,pearl,steps,constel,ring,pearl];
 
-function snapGains(a){ // прирост просмотров между снимками рилсов
-  const s=a.reel_snaps,out=[];
+function valueAt(series,date){let best=null;for(const d of Object.keys(series).sort()){if(d<=date)best=series[d];}return best}
+function snapGains(a){const s=a.reel_snaps,out=[];
   for(let i=1;i<s.length;i++){let g=0,prev=s[i-1],cur=s[i];
-    for(const r of Object.values(a.reels)){const v=r.plays[cur];if(v==null)continue;
-      const p=r.plays[prev];if(p!=null)g+=v-p;else if(r.ts&&r.ts.slice(0,10)>prev)g+=v;}
+    for(const r of Object.values(a.reels)){const v=r.plays[cur];if(v==null)continue;const p=r.plays[prev];
+      if(p!=null)g+=v-p;else if(r.ts&&r.ts.slice(0,10)>prev)g+=v;}
     out.push({from:prev,date:cur,gain:Math.max(0,g)});}
   return out}
 
+function emptyBox(text){return `<div class="empty">${pearl(44).replace('class="deco"','')}<div>${text}</div></div>`}
+function smooth(p){if(p.length<3)return p.map((q,i)=>(i?'L':'M')+q[0]+' '+q[1]).join(' ');
+  let d=`M${p[0][0]} ${p[0][1]}`;for(let i=0;i<p.length-1;i++){const p0=p[i-1]||p[i],p1=p[i],p2=p[i+1],p3=p[i+2]||p2;
+    d+=` C${p1[0]+(p2[0]-p0[0])/6} ${p1[1]+(p2[1]-p0[1])/6},${p2[0]-(p3[0]-p1[0])/6} ${p2[1]-(p3[1]-p1[1])/6},${p2[0]} ${p2[1]}`}return d}
+
 function lineChart(pts){
-  if(pts.length<2)return '<div class="empty">График появится, когда наберётся хотя бы 2 дня истории.</div>';
-  const W=900,H=220,P=34,vs=pts.map(p=>p.v),mn=Math.min(...vs),mx=Math.max(...vs),rg=mx-mn||1;
-  const x=i=>P+(W-P*2)*i/(pts.length-1),y=v=>H-P-(H-P*2)*(v-mn)/rg;
-  const d=pts.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(p.v).toFixed(1)).join(' ');
-  const step=Math.ceil(pts.length/8);
-  const labels=pts.map((p,i)=>i%step&&i!==pts.length-1?'':`<text x="${x(i)}" y="${H-8}" text-anchor="middle" font-size="12" fill="var(--muted)">${dshort(p.d)}</text>`).join('');
-  return `<svg viewBox="0 0 ${W} ${H}"><text x="4" y="${y(mx)+4}" font-size="12" fill="var(--muted)">${fmt(mx)}</text><text x="4" y="${y(mn)+4}" font-size="12" fill="var(--muted)">${fmt(mn)}</text>
-  <path d="${d}" fill="none" stroke="var(--acc)" stroke-width="2.5" stroke-linejoin="round"/>${pts.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p.v)}" r="3" fill="var(--acc)"><title>${dshort(p.d)}: ${fmt(p.v)}</title></circle>`).join('')}${labels}</svg>`}
+  if(pts.length<2)return emptyBox('Кривая роста появится со второго дня — снимок подписчиков каждый день в 09:10 МСК.');
+  const W=innerWidth<820?440:820,H=innerWidth<820?210:230,L=48,R=14,T=14,B=30,vs=pts.map(p=>p.v);let mn=Math.min(...vs),mx=Math.max(...vs);if(mx===mn){mx+=1;mn-=1}
+  const x=i=>L+(W-L-R)*i/(pts.length-1),y=v=>T+(H-T-B)*(1-(v-mn)/(mx-mn));
+  const P=pts.map((p,i)=>[+x(i).toFixed(1),+y(p.v).toFixed(1)]),line=smooth(P);
+  const grid=[0,1/3,2/3,1].map(f=>{const v=mn+(mx-mn)*f,yy=y(v);return `<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="var(--line)"/><text x="${L-8}" y="${yy+4}" text-anchor="end" font-size="11" fill="var(--muted)">${fmt(v)}</text>`}).join('');
+  const step=Math.ceil(pts.length/(innerWidth<820?4:7)),lab=pts.map((p,i)=>i%step&&i!==pts.length-1?'':`<text x="${x(i)}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--muted)">${dshort(p.d)}</text>`).join('');
+  const lp=P[P.length-1];
+  return `<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--gold)" stop-opacity=".45"/><stop offset="1" stop-color="var(--gold)" stop-opacity="0"/></linearGradient></defs>${grid}
+  <path d="${line} L${lp[0]} ${H-B} L${P[0][0]} ${H-B}Z" fill="url(#ar)"/><path d="${line}" fill="none" stroke="var(--acc)" stroke-width="2.6" stroke-linecap="round"/>
+  ${P.map((q,i)=>`<circle cx="${q[0]}" cy="${q[1]}" r="9" fill="transparent" data-t="${dshort(pts[i].d)}: ${fmt(pts[i].v)}"/>`).join('')}
+  <circle cx="${lp[0]}" cy="${lp[1]}" r="9" fill="var(--gold)" opacity=".25"/><circle cx="${lp[0]}" cy="${lp[1]}" r="4.5" fill="var(--acc)" stroke="var(--card-solid)" stroke-width="2"/>${lab}</svg>`}
 
 function barChart(gs){
-  if(!gs.length)return '<div class="empty">Столбики появятся после второго снимка рилсов (снимок раз в 3 дня).</div>';
-  const W=900,H=220,P=30,mx=Math.max(...gs.map(g=>g.gain))||1,bw=(W-P*2)/gs.length;
-  return `<svg viewBox="0 0 ${W} ${H}">${gs.map((g,i)=>{const h=(H-P*2)*g.gain/mx,x=P+i*bw+bw*.15,y=H-P-h;
-    return `<rect x="${x}" y="${y}" width="${bw*.7}" height="${h}" rx="4" fill="var(--acc2)"><title>${dshort(g.from)}–${dshort(g.date)}: +${fmt(g.gain)}</title></rect>
-    <text x="${x+bw*.35}" y="${y-5}" text-anchor="middle" font-size="12" fill="var(--ink)">${fmt(g.gain)}</text>
-    <text x="${x+bw*.35}" y="${H-10}" text-anchor="middle" font-size="12" fill="var(--muted)">${dshort(g.date)}</text>`}).join('')}</svg>`}
+  if(!gs.length)return emptyBox('Столбики появятся после второго снимка рилсов — он делается раз в 3 дня.');
+  const W=innerWidth<820?440:820,H=200,L=48,R=10,T=22,B=30,mx=Math.max(...gs.map(g=>g.gain))||1,bw=(W-L-R)/gs.length;
+  const grid=[0,.5,1].map(f=>{const yy=T+(H-T-B)*(1-f);return `<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="var(--line)"/><text x="${L-8}" y="${yy+4}" text-anchor="end" font-size="11" fill="var(--muted)">${fmt(mx*f)}</text>`}).join('');
+  return `<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="br" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--acc)"/><stop offset="1" stop-color="var(--acc-soft)"/></linearGradient></defs>${grid}${gs.map((g,i)=>{const h=Math.max(2,(H-T-B)*g.gain/mx),w=Math.min(46,bw*.62),x=L+i*bw+(bw-w)/2,y=H-B-h;
+    return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="url(#br)" data-t="${dshort(g.from)}–${dshort(g.date)}: +${fmt(g.gain)}"/><text x="${x+w/2}" y="${H-10}" text-anchor="middle" font-size="11" fill="var(--muted)">${dshort(g.date)}</text>`}).join('')}</svg>`}
 
-function card(l,v,s,c=''){return `<div class="c"><div class="l">${l}</div><div class="v ${c}">${v}</div>${s?`<div class="s">${s}</div>`:''}</div>`}
+let di=0;const card=(l,v,s,c='',deco)=>`<div class="card"><div class="lbl">${l}</div><div class="val ${c}">${v}</div>${s?`<div class="sub">${s}</div>`:''}${(deco||DECO[di++%DECO.length])()}</div>`;
 
 function render(){
-  const a=DATA.accounts[CUR];
-  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.k===CUR));
-  document.getElementById('h').textContent='@'+a.username;
+  di=0;const a=DATA.accounts[CUR];
+  document.querySelectorAll('.acc').forEach(b=>b.classList.toggle('on',b.dataset.k===CUR));
+  document.getElementById('acct').textContent='@'+a.username;
   const fd=Object.keys(a.followers).sort(),last=fd[fd.length-1],now=a.followers[last];
-  const delta=k=>{if(!last)return null;const t=addDays(last,-k);if(fd[0]>t)return null;const v=valueAt(a.followers,t);return v==null?null:now-v};
-  const since=fd[0]?dshort(fd[0]):'—';
-  document.getElementById('meta').innerHTML=`${esc(a.title)} · публикаций: ${fmt(a.posts)} · обновлено ${DATA.updated} МСК · история с ${since} · <a href="https://www.instagram.com/${a.username}/" target="_blank">открыть в Instagram</a>`;
+  const fdelta=k=>{if(!last)return null;const t=addDays(last,-k);if(fd[0]>t)return null;const v=valueAt(a.followers,t);return v==null?null:{d:now-v,was:v}};
+  document.getElementById('meta').innerHTML=`${esc(a.title)} · публикаций ${fmt(a.posts)} · обновлено ${DATA.updated} МСК · история с ${fd[0]?dshort(fd[0]):'—'} · <a href="https://www.instagram.com/${a.username}/" target="_blank">открыть в Instagram ↗</a>`;
 
   const reels=Object.entries(a.reels).map(([code,r])=>{const ds=Object.keys(r.plays).sort(),lv=r.plays[ds[ds.length-1]],pv=ds.length>1?r.plays[ds[ds.length-2]]:null;
     return {code,...r,views:lv,delta:pv==null?null:lv-pv}}).filter(r=>r.ts).sort((x,y)=>y.ts.localeCompare(x.ts));
-  const last10=reels.slice(0,10);let pace=null;
-  if(last10.length>1){const span=(new Date(last10[0].ts)-new Date(last10[last10.length-1].ts))/864e5;pace=span>0?(last10.length-1)/span*7:null}
-
+  const last10=reels.slice(0,10);let pace=null,span=null;
+  if(last10.length>1){span=(new Date(last10[0].ts)-new Date(last10[last10.length-1].ts))/864e5;pace=span>0?(last10.length-1)/span*7:null}
+  const top=[...reels].sort((x,y)=>y.views-x.views).slice(0,10);
   const gs=snapGains(a),lastSnap=a.reel_snaps[a.reel_snaps.length-1];
   const sumSince=k=>{if(!lastSnap)return null;const t=addDays(lastSnap,-k);if(a.reel_snaps[0]>t)return null;return gs.filter(g=>g.date>t).reduce((s,g)=>s+g.gain,0)};
-  const total=reels.reduce((s,r)=>s+(r.views||0),0);
-  const lg=gs[gs.length-1];
-  const no='пока нет истории';
+  const total=reels.reduce((s,r)=>s+(r.views||0),0),lg=gs[gs.length-1],wait='копим историю';
+  const fc=(l,k)=>{const r=fdelta(k);return card(l,r?sign(r.d):'—',r?`было ${fmt(r.was)}${r.was?` (${(r.d/r.was*100).toFixed(1)}%)`:''}`:wait,r?cls(r.d):'na')};
+  const vc=(l,v,s)=>card(l,v==null?'—':'+'+fmt(v),v==null?wait:s,v==null?'na':'');
 
-  const row=r=>`<tr><td>${dshort(r.ts)}</td><td><a href="https://www.instagram.com/reel/${r.code}/" target="_blank">${r.code}</a></td><td class="n">${fmt(r.views)}</td><td class="n ${cls(r.delta)}">${r.delta==null?'—':sign(r.delta)}</td><td class="n">${fmt(r.likes)}</td><td class="n">${fmt(r.comments)}</td><td class="cap">${esc(r.caption.slice(0,110))}${r.caption.length>110?'…':''}</td></tr>`;
-  const head='<tr><th>Дата</th><th>Рилс</th><th class="n">Просмотры</th><th class="n">Δ</th><th class="n">Лайки</th><th class="n">Комм.</th><th>Подпись</th></tr>';
-  const top=[...reels].sort((x,y)=>y.views-x.views).slice(0,10);
+  const row=(r,i,top)=>`<tr><td>${top?`<span class="rk">${i+1}</span>`:dshort(r.ts)}</td><td><a href="https://www.instagram.com/reel/${r.code}/" target="_blank">${r.code}</a></td><td class="n">${fmt(r.views)}</td>${top?'':`<td class="n ${cls(r.delta)}">${r.delta==null?'—':sign(r.delta)}</td>`}<td class="n">${fmt(r.likes)}</td><td class="n">${fmt(r.comments)}</td>${top?'':`<td class="cap" title="${esc(r.caption)}">${esc(r.caption)}</td>`}</tr>`;
 
   document.getElementById('app').innerHTML=`
-  <h2>Подписчики</h2><p class="hint">Снимок каждый день.</p>
-  <div class="grid">${card('Сейчас',fmt(now),last?'на '+dshort(last):'')}${card('За сутки',delta(1)==null?'—':sign(delta(1)),delta(1)==null?no:'',cls(delta(1)))}${card('За 7 дней',delta(7)==null?'—':sign(delta(7)),delta(7)==null?no:'',cls(delta(7)))}${card('За 30 дней',delta(30)==null?'—':sign(delta(30)),delta(30)==null?no:(now-delta(30)?((delta(30)/(now-delta(30))*100).toFixed(1)+'%'):''),cls(delta(30)))}${card('Темп',pace==null?'—':pace.toFixed(1),'рилсов в неделю, по последним 10')}</div>
-  <div class="chart">${lineChart(fd.map(d=>({d,v:a.followers[d]})))}</div>
+  <div class="grid">${card('Подписчиков',fmt(now),last?'на '+dshort(last):'',"",pearl)}${fc('За сутки',1)}${fc('За 7 дней',7)}${fc('За 30 дней',30)}</div>
+  <div class="wide"><div class="card">${''}<div class="lbl">Темп публикаций</div><div class="val">${pace==null?'—':pace.toFixed(1)}<span style="font-size:22px">/нед</span></div><div class="sub">по последним 10 рилсам${span?`, ${span.toFixed(1)} дн.`:''}</div><div class="mini"><div>Последний рилс<b>${reels[0]?dshort(reels[0].ts):'—'}</b></div><div>Публикаций всего<b>${fmt(a.posts)}</b></div><div>Рилсов в базе<b>${reels.length}</b></div><div>Лучший рилс<b>${top[0]?fmt(top[0].views):'—'}</b></div></div></div>
+    <div class="card chart"><div class="lbl">Рост подписчиков</div>${lineChart(fd.map(d=>({d,v:a.followers[d]})))}</div></div>
 
-  <h2>Просмотры рилсов</h2><p class="hint">Прирост между снимками рилсов (раз в 3 дня, последние 15 рилсов). Старые рилсы вне снимка не учитываются, так что цифры немного занижены.</p>
-  <div class="grid">${card('Последний период',lg?'+'+fmt(lg.gain):'—',lg?dshort(lg.from)+'–'+dshort(lg.date):no)}${card('За 7 дней',sumSince(7)==null?'—':'+'+fmt(sumSince(7)),sumSince(7)==null?no:'')}${card('За 30 дней',sumSince(30)==null?'—':'+'+fmt(sumSince(30)),sumSince(30)==null?no:'')}${card('Всего у известных рилсов',fmt(total),reels.length+' рилсов в базе')}</div>
-  <div class="chart">${barChart(gs.slice(-12))}</div>
+  <h2 id="views">Просмотры рилсов <small>прирост между снимками · раз в 3 дня, последние 15 рилсов</small></h2>
+  <div class="grid">${vc('Последний период',lg?lg.gain:null,lg?dshort(lg.from)+' – '+dshort(lg.date):'')}${vc('За 7 дней',sumSince(7),'по снимкам')}${vc('За 30 дней',sumSince(30),'по снимкам')}${card('Всего у рилсов в базе',fmt(total),reels.length+' рилсов',"",constel)}</div>
+  <div class="card chart" style="margin-top:14px"><div class="lbl">Прирост просмотров по снимкам</div>${barChart(gs.slice(-12))}</div>
+  <p class="hint">Считаются только последние 15 рилсов в снимке: когда рилс выпадает из пятнадцати, его дальнейшие просмотры сюда не идут. Поэтому прирост чуть ниже реального.</p>
 
-  <h2>Последние рилсы</h2><p class="hint">Δ — прирост просмотров с прошлого снимка.</p>
-  <div class="tw"><table>${head}${reels.slice(0,15).map(row).join('')}</table></div>
-
-  <h2 id="top">Топ-10 по просмотрам за всё время</h2>
-  <div class="tw"><table>${head}${top.map(row).join('')}</table></div>`;
+  <div class="two">
+    <div><h2 id="reels">История рилсов <small>Δ — с прошлого снимка</small></h2>
+      <div class="card tw"><table><thead><tr><th>Дата</th><th>Рилс</th><th class="n">Просмотры</th><th class="n">Δ</th><th class="n">Лайки</th><th class="n">Комм.</th><th>Подпись</th></tr></thead><tbody>${reels.slice(0,15).map((r,i)=>row(r,i,false)).join('')}</tbody></table></div></div>
+    <div><h2 id="top">Топ по просмотрам <small>за всю историю</small></h2>
+      <div class="card tw"><table><thead><tr><th>#</th><th>Рилс</th><th class="n">Просмотры</th><th class="n">Лайки</th><th class="n">Комм.</th></tr></thead><tbody>${top.map((r,i)=>row(r,i,true)).join('')}</tbody></table></div></div>
+  </div>`;
+  io.disconnect();['overview','views','reels','top'].forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el)});
 }
 
-fetch('data.json?'+Date.now()).then(r=>r.json()).then(d=>{DATA=d;
-  if(!DATA.accounts[CUR])CUR=Object.keys(DATA.accounts)[0];
-  document.getElementById('tabs').innerHTML=Object.entries(DATA.accounts).map(([k,a])=>`<button data-k="${k}">${a.flag} @${a.username}</button>`).join('');
-  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{CUR=b.dataset.k;try{localStorage.setItem('acc',CUR)}catch(e){}render()});
-  render()}).catch(e=>{document.getElementById('meta').textContent='Не удалось загрузить data.json: '+e});
+// подсказки при наведении на графики
+const tip=document.getElementById('tip');
+document.addEventListener('mousemove',e=>{const t=e.target.closest&&e.target.closest('[data-t]');if(t){tip.textContent=t.dataset.t;tip.style.left=e.clientX+12+'px';tip.style.top=e.clientY-34+'px';tip.style.opacity=1}else tip.style.opacity=0});
+// подсветка пункта меню при прокрутке
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id))}),{rootMargin:'-20% 0px -70% 0px'});
+
+fetch('data.json?'+Date.now()).then(r=>r.json()).then(d=>{DATA=d;if(!DATA.accounts[CUR])CUR=Object.keys(DATA.accounts)[0];
+  document.getElementById('accs').innerHTML=Object.entries(DATA.accounts).map(([k,a])=>`<button class="acc" data-k="${k}"><span class="pearl">${a.flag}</span><div><b>@${a.username}</b><span>${esc(a.title)}</span></div></button>`).join('');
+  document.querySelectorAll('.acc').forEach(b=>b.onclick=()=>{CUR=b.dataset.k;try{localStorage.setItem('acc',CUR)}catch(e){}render();window.scrollTo({top:0,behavior:'smooth'})});
+  render();
+  let rw=innerWidth<820;addEventListener('resize',()=>{if((innerWidth<820)!==rw){rw=!rw;render()}});
+}).catch(e=>{document.getElementById('meta').textContent='Не удалось загрузить data.json: '+e});
 </script></body></html>
