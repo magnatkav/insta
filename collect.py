@@ -13,6 +13,7 @@ import argparse
 import json
 import os
 import sys
+import io
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -21,6 +22,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 HERE = Path(__file__).parent
 DATA = HERE / "data.json"
+THUMBS = HERE / "thumbs"
+AVATARS = HERE / "avatars"
 KEY_FILE = Path(r"D:\8. Cursor\keys\apify.txt")
 MSK = timezone(timedelta(hours=3))
 REELS_EVERY_DAYS = 3
@@ -51,6 +54,28 @@ def run_actor(actor: str, payload: dict, timeout: int = 280) -> list:
         return json.loads(r.read().decode("utf-8"))
 
 
+def save_image(url: str, path: Path, width: int) -> bool:
+    """Скачать картинку с CDN Instagram и ужать до width px (ссылки Instagram живут недолго)."""
+    if not url:
+        return False
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        raw = urllib.request.urlopen(req, timeout=30).read()
+        path.parent.mkdir(exist_ok=True)
+        try:
+            from PIL import Image
+            im = Image.open(io.BytesIO(raw)).convert("RGB")
+            if im.width > width:
+                im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
+            im.save(path, "JPEG", quality=82, optimize=True)
+        except ImportError:
+            path.write_bytes(raw)
+        return True
+    except Exception as e:  # обложка не критична — дашборд покажет заглушку
+        print(f"  картинка не скачалась {path.name}: {e}")
+        return False
+
+
 def load() -> dict:
     if DATA.exists():
         return json.loads(DATA.read_text(encoding="utf-8"))
@@ -74,6 +99,9 @@ def collect_profiles(d: dict, today: str) -> None:
         acc["followers"][today] = p["followersCount"]
         acc["posts"] = p.get("postsCount")
         acc["full_name"] = p.get("fullName")
+        acc["bio"] = (p.get("biography") or "").strip()
+        if save_image(p.get("profilePicUrlHD") or p.get("profilePicUrl"), AVATARS / f"{key}.jpg", 160):
+            acc["avatar"] = f"avatars/{key}.jpg"
         print(f"[{key}] подписчиков {p['followersCount']}, публикаций {p.get('postsCount')}")
 
 
@@ -97,6 +125,10 @@ def apply_reels(acc: dict, items: list, today: str) -> int:
         r["likes"] = it.get("likesCount") or 0
         r["comments"] = it.get("commentsCount") or 0
         r["plays"][today] = plays
+        thumb = THUMBS / f"{code}.jpg"
+        if not thumb.exists():
+            save_image(it.get("displayUrl"), thumb, 240)
+        r["thumb"] = thumb.exists()
         n += 1
     if n and today not in acc["reel_snaps"]:
         acc["reel_snaps"].append(today)

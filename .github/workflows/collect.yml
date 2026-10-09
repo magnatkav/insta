@@ -16,11 +16,13 @@ jobs:
       - name: Сбор данных Apify
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-        run: python collect.py
+        run: |
+          pip install -q pillow
+          python collect.py
       - name: Сохранить data.json
         run: |
           git config user.name "dashboard-bot"
           git config user.email "dashboard-bot@users.noreply.github.com"
-          git add data.json
+          git add data.json thumbs avatars
           git diff --cached --quiet || git commit -m "снимок $(date -u +%F)"
           git push
