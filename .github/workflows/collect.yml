@@ -1,0 +1,26 @@
+name: collect
+on:
+  schedule:
+    - cron: "10 6 * * *"   # 09:10 МСК каждый день
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Сбор данных Apify
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python collect.py
+      - name: Сохранить data.json
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "dashboard-bot@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m "снимок $(date -u +%F)"
+          git push

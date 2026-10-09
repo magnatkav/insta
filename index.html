@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Инста-дашборд</title>
+<style>
+:root{--bg:#f6efe4;--card:#fffaf2;--ink:#3a2a1e;--muted:#8b7562;--line:#e7d9c6;--acc:#a0672f;--acc2:#d9b48a;--up:#4f7d3a;--down:#b0482f}
+@media (prefers-color-scheme:dark){:root{--bg:#1f1914;--card:#2a221b;--ink:#f1e6d8;--muted:#b49d86;--line:#3d3228;--acc:#d8a26a;--acc2:#7a5634;--up:#93c278;--down:#e48a72}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:18px 16px 60px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+h1{font-size:22px;margin:0}
+.tabs{display:flex;gap:6px}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 16px;border-radius:999px;font-size:15px;cursor:pointer}
+.tabs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.meta{color:var(--muted);font-size:13px;margin:0 0 18px}
+.meta a{color:var(--acc)}
+h2{font-size:17px;margin:26px 0 4px}
+.hint{color:var(--muted);font-size:13px;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.c .l{color:var(--muted);font-size:13px}.c .v{font-size:24px;font-weight:700;margin-top:2px}.c .s{font-size:12px;color:var(--muted)}
+.up{color:var(--up)}.down{color:var(--down)}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}
+.chart svg{width:100%;height:auto;display:block}
+.empty{color:var(--muted);font-size:14px;padding:18px;text-align:center}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{color:var(--muted);font-weight:600;font-size:12px}
+td.n,th.n{text-align:right}
+td.cap{white-space:normal;min-width:220px;max-width:360px;color:var(--muted);font-size:13px}
+tr:last-child td{border-bottom:0}
+@media (max-width:600px){td.cap{white-space:nowrap;min-width:0;max-width:240px;overflow:hidden;text-overflow:ellipsis}}
+td a{color:var(--acc);text-decoration:none}
+</style></head><body><div class="w">
+<header><h1 id="h">Instagram</h1><div class="tabs" id="tabs"></div></header>
+<p class="meta" id="meta">Загрузка…</p>
+<div id="app"></div>
+</div>
+<script>
+const fmt=n=>n==null?'—':Math.round(n).toLocaleString('ru-RU');
+const sign=n=>n==null?'—':(n>0?'+':'')+fmt(n);
+const cls=n=>n>0?'up':n<0?'down':'';
+const dshort=s=>{const[y,m,d]=s.slice(0,10).split('-');return d+'.'+m};
+const addDays=(s,k)=>{const t=new Date(s+'T00:00:00Z');t.setUTCDate(t.getUTCDate()+k);return t.toISOString().slice(0,10)};
+const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let DATA,CUR;
+try{CUR=localStorage.getItem('acc')||'ru'}catch(e){CUR='ru'}
+
+function valueAt(series,date){ // последнее значение на дату или раньше
+  let best=null;for(const d of Object.keys(series).sort()){if(d<=date)best=series[d];}return best}
+
+function snapGains(a){ // прирост просмотров между снимками рилсов
+  const s=a.reel_snaps,out=[];
+  for(let i=1;i<s.length;i++){let g=0,prev=s[i-1],cur=s[i];
+    for(const r of Object.values(a.reels)){const v=r.plays[cur];if(v==null)continue;
+      const p=r.plays[prev];if(p!=null)g+=v-p;else if(r.ts&&r.ts.slice(0,10)>prev)g+=v;}
+    out.push({from:prev,date:cur,gain:Math.max(0,g)});}
+  return out}
+
+function lineChart(pts){
+  if(pts.length<2)return '<div class="empty">График появится, когда наберётся хотя бы 2 дня истории.</div>';
+  const W=900,H=220,P=34,vs=pts.map(p=>p.v),mn=Math.min(...vs),mx=Math.max(...vs),rg=mx-mn||1;
+  const x=i=>P+(W-P*2)*i/(pts.length-1),y=v=>H-P-(H-P*2)*(v-mn)/rg;
+  const d=pts.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(p.v).toFixed(1)).join(' ');
+  const step=Math.ceil(pts.length/8);
+  const labels=pts.map((p,i)=>i%step&&i!==pts.length-1?'':`<text x="${x(i)}" y="${H-8}" text-anchor="middle" font-size="12" fill="var(--muted)">${dshort(p.d)}</text>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}"><text x="4" y="${y(mx)+4}" font-size="12" fill="var(--muted)">${fmt(mx)}</text><text x="4" y="${y(mn)+4}" font-size="12" fill="var(--muted)">${fmt(mn)}</text>
+  <path d="${d}" fill="none" stroke="var(--acc)" stroke-width="2.5" stroke-linejoin="round"/>${pts.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p.v)}" r="3" fill="var(--acc)"><title>${dshort(p.d)}: ${fmt(p.v)}</title></circle>`).join('')}${labels}</svg>`}
+
+function barChart(gs){
+  if(!gs.length)return '<div class="empty">Столбики появятся после второго снимка рилсов (снимок раз в 3 дня).</div>';
+  const W=900,H=220,P=30,mx=Math.max(...gs.map(g=>g.gain))||1,bw=(W-P*2)/gs.length;
+  return `<svg viewBox="0 0 ${W} ${H}">${gs.map((g,i)=>{const h=(H-P*2)*g.gain/mx,x=P+i*bw+bw*.15,y=H-P-h;
+    return `<rect x="${x}" y="${y}" width="${bw*.7}" height="${h}" rx="4" fill="var(--acc2)"><title>${dshort(g.from)}–${dshort(g.date)}: +${fmt(g.gain)}</title></rect>
+    <text x="${x+bw*.35}" y="${y-5}" text-anchor="middle" font-size="12" fill="var(--ink)">${fmt(g.gain)}</text>
+    <text x="${x+bw*.35}" y="${H-10}" text-anchor="middle" font-size="12" fill="var(--muted)">${dshort(g.date)}</text>`}).join('')}</svg>`}
+
+function card(l,v,s,c=''){return `<div class="c"><div class="l">${l}</div><div class="v ${c}">${v}</div>${s?`<div class="s">${s}</div>`:''}</div>`}
+
+function render(){
+  const a=DATA.accounts[CUR];
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.k===CUR));
+  document.getElementById('h').textContent='@'+a.username;
+  const fd=Object.keys(a.followers).sort(),last=fd[fd.length-1],now=a.followers[last];
+  const delta=k=>{if(!last)return null;const t=addDays(last,-k);if(fd[0]>t)return null;const v=valueAt(a.followers,t);return v==null?null:now-v};
+  const since=fd[0]?dshort(fd[0]):'—';
+  document.getElementById('meta').innerHTML=`${esc(a.title)} · публикаций: ${fmt(a.posts)} · обновлено ${DATA.updated} МСК · история с ${since} · <a href="https://www.instagram.com/${a.username}/" target="_blank">открыть в Instagram</a>`;
+
+  const reels=Object.entries(a.reels).map(([code,r])=>{const ds=Object.keys(r.plays).sort(),lv=r.plays[ds[ds.length-1]],pv=ds.length>1?r.plays[ds[ds.length-2]]:null;
+    return {code,...r,views:lv,delta:pv==null?null:lv-pv}}).filter(r=>r.ts).sort((x,y)=>y.ts.localeCompare(x.ts));
+  const last10=reels.slice(0,10);let pace=null;
+  if(last10.length>1){const span=(new Date(last10[0].ts)-new Date(last10[last10.length-1].ts))/864e5;pace=span>0?(last10.length-1)/span*7:null}
+
+  const gs=snapGains(a),lastSnap=a.reel_snaps[a.reel_snaps.length-1];
+  const sumSince=k=>{if(!lastSnap)return null;const t=addDays(lastSnap,-k);if(a.reel_snaps[0]>t)return null;return gs.filter(g=>g.date>t).reduce((s,g)=>s+g.gain,0)};
+  const total=reels.reduce((s,r)=>s+(r.views||0),0);
+  const lg=gs[gs.length-1];
+  const no='пока нет истории';
+
+  const row=r=>`<tr><td>${dshort(r.ts)}</td><td><a href="https://www.instagram.com/reel/${r.code}/" target="_blank">${r.code}</a></td><td class="n">${fmt(r.views)}</td><td class="n ${cls(r.delta)}">${r.delta==null?'—':sign(r.delta)}</td><td class="n">${fmt(r.likes)}</td><td class="n">${fmt(r.comments)}</td><td class="cap">${esc(r.caption.slice(0,110))}${r.caption.length>110?'…':''}</td></tr>`;
+  const head='<tr><th>Дата</th><th>Рилс</th><th class="n">Просмотры</th><th class="n">Δ</th><th class="n">Лайки</th><th class="n">Комм.</th><th>Подпись</th></tr>';
+  const top=[...reels].sort((x,y)=>y.views-x.views).slice(0,10);
+
+  document.getElementById('app').innerHTML=`
+  <h2>Подписчики</h2><p class="hint">Снимок каждый день.</p>
+  <div class="grid">${card('Сейчас',fmt(now),last?'на '+dshort(last):'')}${card('За сутки',delta(1)==null?'—':sign(delta(1)),delta(1)==null?no:'',cls(delta(1)))}${card('За 7 дней',delta(7)==null?'—':sign(delta(7)),delta(7)==null?no:'',cls(delta(7)))}${card('За 30 дней',delta(30)==null?'—':sign(delta(30)),delta(30)==null?no:(now-delta(30)?((delta(30)/(now-delta(30))*100).toFixed(1)+'%'):''),cls(delta(30)))}${card('Темп',pace==null?'—':pace.toFixed(1),'рилсов в неделю, по последним 10')}</div>
+  <div class="chart">${lineChart(fd.map(d=>({d,v:a.followers[d]})))}</div>
+
+  <h2>Просмотры рилсов</h2><p class="hint">Прирост между снимками рилсов (раз в 3 дня, последние 15 рилсов). Старые рилсы вне снимка не учитываются, так что цифры немного занижены.</p>
+  <div class="grid">${card('Последний период',lg?'+'+fmt(lg.gain):'—',lg?dshort(lg.from)+'–'+dshort(lg.date):no)}${card('За 7 дней',sumSince(7)==null?'—':'+'+fmt(sumSince(7)),sumSince(7)==null?no:'')}${card('За 30 дней',sumSince(30)==null?'—':'+'+fmt(sumSince(30)),sumSince(30)==null?no:'')}${card('Всего у известных рилсов',fmt(total),reels.length+' рилсов в базе')}</div>
+  <div class="chart">${barChart(gs.slice(-12))}</div>
+
+  <h2>Последние рилсы</h2><p class="hint">Δ — прирост просмотров с прошлого снимка.</p>
+  <div class="tw"><table>${head}${reels.slice(0,15).map(row).join('')}</table></div>
+
+  <h2 id="top">Топ-10 по просмотрам за всё время</h2>
+  <div class="tw"><table>${head}${top.map(row).join('')}</table></div>`;
+}
+
+fetch('data.json?'+Date.now()).then(r=>r.json()).then(d=>{DATA=d;
+  if(!DATA.accounts[CUR])CUR=Object.keys(DATA.accounts)[0];
+  document.getElementById('tabs').innerHTML=Object.entries(DATA.accounts).map(([k,a])=>`<button data-k="${k}">${a.flag} @${a.username}</button>`).join('');
+  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{CUR=b.dataset.k;try{localStorage.setItem('acc',CUR)}catch(e){}render()});
+  render()}).catch(e=>{document.getElementById('meta').textContent='Не удалось загрузить data.json: '+e});
+</script></body></html>
