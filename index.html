@@ -17,6 +17,7 @@
   --shadow:0 1px 0 rgba(255,220,180,.06) inset,0 22px 46px -24px rgba(0,0,0,.8),0 4px 14px -6px rgba(0,0,0,.5);
   --glow1:rgba(120,78,40,.35);--glow2:rgba(201,140,70,.12);--side:rgba(36,27,21,.7)}}
 *{box-sizing:border-box}
+.val,h1,.tile .tx b,.logo{font-variant-numeric:lining-nums}
 html,body{margin:0}html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font:15px/1.5 Manrope,system-ui,sans-serif;min-height:100vh;
   background-image:radial-gradient(900px 600px at 85% -10%,var(--glow1),transparent 60%),radial-gradient(700px 500px at -10% 40%,var(--glow2),transparent 60%),radial-gradient(800px 600px at 60% 110%,var(--glow2),transparent 60%);background-attachment:fixed}
@@ -46,7 +47,7 @@ h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:42px;line-he
 h1 em{font-style:italic;color:var(--acc)}
 .bio{color:var(--muted);font-size:13.5px;white-space:pre-line;max-width:560px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .hstats{display:flex;gap:26px;text-align:center}
-.hstats b{display:block;font:700 30px/1.1 "Cormorant Garamond",serif}.hstats span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.hstats b{display:block;font:700 46px/1.05 "Cormorant Garamond",serif;font-variant-numeric:lining-nums tabular-nums;color:var(--acc-deep);margin-bottom:4px}.hstats div>span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .meta{color:var(--muted);font-size:12.5px;margin:12px 4px 0}.meta a{color:var(--acc);text-decoration:none;border-bottom:1px solid var(--acc-soft)}
 h2{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:30px;margin:48px 0 4px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;scroll-margin-top:20px}
 h2 small{font:500 13px Manrope;color:var(--muted)}
@@ -71,6 +72,7 @@ h2 small{font:500 13px Manrope;color:var(--muted)}
 .bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--acc-soft),var(--acc));transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
 .chart{padding:18px 20px}
 .chart svg{width:100%;height:auto;display:block;overflow:visible}
+.empty svg{width:44px!important;height:44px}
 .empty{display:grid;place-items:center;min-height:150px;color:var(--muted);font-size:14px;text-align:center;gap:10px}
 /* что залетает */
 .dims{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
@@ -122,7 +124,7 @@ td a{color:var(--acc-deep);text-decoration:none;font-weight:700}
   .logo{font-size:18px}.logo small,nav{display:none}
   .accs{margin:0 0 0 auto;flex-direction:row;gap:6px}.acc{padding:6px 8px;gap:6px}.acc div span{display:none}.acc b{font-size:12px}.ava{width:26px;height:26px}
   main{padding:18px 16px 60px}h1{font-size:30px}h2{font-size:26px}.val{font-size:34px}.grid{gap:10px}.card{padding:14px 14px 12px;border-radius:16px}
-  .hero{gap:14px;padding:18px}.hero .big,.hero .ph{width:72px;height:72px}.hstats{gap:8px}.hstats b{font-size:22px}.hstats span{font-size:9px;letter-spacing:.08em}
+  .hero{gap:14px;padding:18px}.hero .big,.hero .ph{width:72px;height:72px}.hstats{gap:8px}.hstats b{font-size:30px}.hstats div>span{font-size:9px;letter-spacing:.08em}
   .deco{transform:scale(.75);transform-origin:bottom right}.sub{max-width:100%}.spark{display:none}
   .dims{grid-template-columns:minmax(0,1fr)}.drow{grid-template-columns:minmax(0,1fr) 70px 66px}
   .gal{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
