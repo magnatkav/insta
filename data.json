@@ -7,13 +7,15 @@
    "followers": {
     "2026-10-09": 1067,
     "2026-10-10": 1067,
-    "2026-10-11": 1067
+    "2026-10-11": 1067,
+    "2026-10-12": 1067
    },
    "posts": 181,
    "reels": {
     "DeOJg1ioOvl": {
      "plays": {
-      "2026-10-09": 206
+      "2026-10-09": 206,
+      "2026-10-12": 215
      },
      "ts": "2026-10-08T05:09:15.000Z",
      "caption": "Привычка простая: когда появляются лишние деньги, они сначала решают, во что их превратить, и только потом, на что потратить. Премия у них уходит в досрочное погашение или в подушку.  Снаружи такие соседи выглядят скромн",
@@ -23,17 +25,19 @@
     },
     "DeMUYy4uCdN": {
      "plays": {
-      "2026-10-09": 1316
+      "2026-10-09": 1316,
+      "2026-10-12": 1361
      },
      "ts": "2026-10-07T12:05:45.000Z",
-     "caption": "Людей тянет к тем, рядом с кем им хорошо. И держится это почти всегда на простых привычках, для которых не нужны деньги или должность.  Слушай до конца и не готовь ответ, пока человек ещё говорит. Запоминай детали: имя е",
-     "likes": 5,
+     "caption": "Людей тянет к тем, рядом с кем им хорошо. И держится это на простых привычках, для которых не нужны деньги или должность.  Слушай до конца и не готовь ответ, пока человек ещё говорит. Запоминай детали: имя его ребёнка ил",
+     "likes": 8,
      "comments": 0,
      "thumb": true
     },
     "DeL7mRxuxpN": {
      "plays": {
-      "2026-10-09": 155
+      "2026-10-09": 155,
+      "2026-10-12": 155
      },
      "ts": "2026-10-07T08:29:08.000Z",
      "caption": "Ум оценят на собеседовании. Помнить тебя будут по мелочам, которые ты делаешь на автомате и даже не считаешь чем-то важным.  Как ты говоришь с официантом или курьером. Люди замечают, как ты обращаешься с теми, от кого те",
@@ -43,7 +47,8 @@
     },
     "DeLjq5doNEO": {
      "plays": {
-      "2026-10-09": 1
+      "2026-10-09": 1,
+      "2026-10-12": 1
      },
      "ts": "2026-10-07T05:00:09.000Z",
      "caption": "Они спокойно говорят «нет», когда все вокруг ждут «да». Окружающих это правда пугает: с таким человеком не работают привычные рычаги давления. Его не получается дожать чувством вины или спешкой.  Психически сильный челов",
@@ -53,7 +58,8 @@
     },
     "DeNYnPkILjP": {
      "plays": {
-      "2026-10-09": 253
+      "2026-10-09": 253,
+      "2026-10-12": 262
      },
      "ts": "2026-10-07T22:02:04.000Z",
      "caption": "Лидера видно по тому, что он говорит в сложные моменты. Должность может быть любой, но несколько фраз сразу показывают, кто в комнате действительно ведёт людей.  «Это моя ошибка». Без поиска виноватых и долгих объяснений",
@@ -63,7 +69,8 @@
     },
     "DePCnjKIG1i": {
      "plays": {
-      "2026-10-09": 117
+      "2026-10-09": 117,
+      "2026-10-12": 119
      },
      "ts": "2026-10-08T13:28:19.000Z",
      "caption": "«У меня так и есть, сегодня пусто, завтра густо». Это слова одной из участниц Денежной ходьбы. Похожее мне пишут многие специалисты. Психологи, косметологи, нутрициологи, мастера: знаний полно, а доход скачет, как качели",
@@ -400,10 +407,51 @@
      "likes": 5,
      "comments": 0,
      "thumb": true
+    },
+    "DeUPuJEo8j8": {
+     "plays": {
+      "2026-10-12": 133
+     },
+     "ts": "2026-10-10T13:59:04.000Z",
+     "caption": "Мечта кажется далёкой, потому что она одна и огромная. Квартира, переезд к морю, своё дело. Целиком на неё страшно даже смотреть, и проще отложить на следующий год.  Я посчитал на шагах. Если проходить по 10.000 в день, ",
+     "likes": 0,
+     "comments": 0,
+     "thumb": true
+    },
+    "DeWeN9FOGFr": {
+     "plays": {
+      "2026-10-12": 2
+     },
+     "ts": "2026-10-11T10:44:25.000Z",
+     "caption": "В октябре темнеет рано, после работы сил хватает только на диван. Планы на год тихо переезжают на понедельник, потом на январь. Весной просыпаешься, а полгода прошло мимо.  Я долго списывал это на лень. Хотя чаще просто ",
+     "likes": 0,
+     "comments": 0,
+     "thumb": true
+    },
+    "DeS3gt6o2uk": {
+     "plays": {
+      "2026-10-12": 146
+     },
+     "ts": "2026-10-10T01:08:16.000Z",
+     "caption": "«Есть у меня такая фраза... Да мне и столько хватит». Это написала участница Денежной ходьбы и сама же добавила: то есть я себя блокирую.  Звучит скромно и даже мудро. А внутри часто сидит страх: захочешь больше, не полу",
+     "likes": 0,
+     "comments": 0,
+     "thumb": true
+    },
+    "DeQiuQtIXIb": {
+     "plays": {
+      "2026-10-12": 473
+     },
+     "ts": "2026-10-09T03:28:04.000Z",
+     "caption": "Фраза простая: «Я сегодня только на кофе, посчитаю себя отдельно». Сказать её лучше сразу, когда делаешь заказ. Когда счёт уже на столе и все достали калькуляторы, звучит хуже.  Многим это неловко. Вечер прошёл хорошо, ж",
+     "likes": 1,
+     "comments": 0,
+     "thumb": true
     }
    },
    "reel_snaps": [
-    "2026-10-09"
+    "2026-10-09",
+    "2026-10-12"
    ],
    "full_name": "Анатолий Киясь | Денежная ходьба",
    "bio": "→ Помогаю женщинам выбраться из финансовой ж*пы через 1 привычку в день\n→ 121 уч-к · 15+ млн ₽ за 6 потоков\n→ Новый поток с 12.10 👇",
@@ -416,13 +464,15 @@
    "followers": {
     "2026-10-09": 56,
     "2026-10-10": 56,
-    "2026-10-11": 56
+    "2026-10-11": 56,
+    "2026-10-12": 56
    },
-   "posts": 105,
+   "posts": 106,
    "reels": {
     "DdnBYifP0WC": {
      "plays": {
-      "2026-10-09": 136
+      "2026-10-09": 136,
+      "2026-10-12": 136
      },
      "ts": "2026-09-23T00:27:47.000Z",
      "caption": "Neuroscientists gave people a task using the 'wrong' hand for one week. Their brains changed shape.  Not going to explain the full mechanism here — it's one of the strangest, most counterintuitive drills in the guide.  F",
@@ -432,7 +482,8 @@
     },
     "DeOebUvhJQS": {
      "plays": {
-      "2026-10-09": 155
+      "2026-10-09": 155,
+      "2026-10-12": 157
      },
      "ts": "2026-10-08T08:11:56.000Z",
      "caption": "Neuroscientists at UC Davis found something strange: a burst of curiosity about something totally unrelated can make you remember 20% more of whatever you learn right after.  It's a real effect — novelty and curiosity sw",
@@ -442,7 +493,8 @@
     },
     "DdkgtydpDvL": {
      "plays": {
-      "2026-10-09": 142
+      "2026-10-09": 142,
+      "2026-10-12": 142
      },
      "ts": "2026-09-22T01:03:50.000Z",
      "caption": "London cab drivers who memorize 25,000 streets have a measurably larger memory center than anyone else on Earth.  It's called neuroplasticity — the hippocampus (your brain's memory hub) physically grows when you force it",
@@ -452,7 +504,8 @@
     },
     "DeNY5wvv-Ul": {
      "plays": {
-      "2026-10-09": 28
+      "2026-10-09": 28,
+      "2026-10-12": 28
      },
      "ts": "2026-10-07T22:04:27.000Z",
      "caption": "Left with two equally good options, most people's brains will stall for over 10 minutes deciding. A hard deadline shuts that down completely.  The fix: cap every small decision today at 2 minutes flat — what to eat, who ",
@@ -462,7 +515,8 @@
     },
     "DePDMOesr3k": {
      "plays": {
-      "2026-10-09": 16
+      "2026-10-09": 16,
+      "2026-10-12": 72
      },
      "ts": "2026-10-08T13:33:17.000Z",
      "caption": "University of Waterloo researchers found one specific way of reading a page makes you remember almost twice as much. It has nothing to do with speed.  Not fully explaining it here — it's called the production effect, and",
@@ -472,7 +526,8 @@
     },
     "DeL6BHtJBne": {
      "plays": {
-      "2026-10-09": 95
+      "2026-10-09": 95,
+      "2026-10-12": 95
      },
      "ts": "2026-10-07T08:15:28.000Z",
      "caption": "Every time you switch tasks, your brain pays a hidden tax — researchers can actually measure it in lost minutes.  It's called attention residue: part of your focus stays stuck on the last task for several minutes after y",
@@ -482,7 +537,8 @@
     },
     "DeMUyRkNuOh": {
      "plays": {
-      "2026-10-09": 131
+      "2026-10-09": 131,
+      "2026-10-12": 131
      },
      "ts": "2026-10-07T12:09:17.000Z",
      "caption": "Top chess players train on random, mixed puzzles — never the same pattern twice in a row. There's a reason for that.  It's a real cognitive science principle, and it works for way more than chess. Not spelling it out ful",
@@ -492,7 +548,8 @@
     },
     "DeNwoMQNi7D": {
      "plays": {
-      "2026-10-09": 159
+      "2026-10-09": 159,
+      "2026-10-12": 161
      },
      "ts": "2026-10-08T01:31:46.000Z",
      "caption": "Stanford neuroscientists found a 10-minute protocol that gives the brain almost the same reset as a full night's sleep.  No app, no equipment, no nap even required. Not explaining the mechanism here.  Full explanation + ",
@@ -502,7 +559,8 @@
     },
     "DeOJ_NsBaes": {
      "plays": {
-      "2026-10-09": 86
+      "2026-10-09": 86,
+      "2026-10-12": 123
      },
      "ts": "2026-10-08T05:13:26.000Z",
      "caption": "Your brain is wired to scan for threats 24/7 by default. One sentence a day can retrain it to scan for good instead.  Write down 3 things you're grateful for today — but make each one specific. Not \"grateful for my frien",
@@ -642,7 +700,8 @@
     },
     "DdiHvjPBPNU": {
      "plays": {
-      "2026-10-09": 246
+      "2026-10-09": 246,
+      "2026-10-12": 246
      },
      "ts": "2026-09-21T02:47:09.000Z",
      "caption": "Therapists use this exact technique to stop anxious thoughts from taking over your whole day.  Pick a 10-minute window each day — same time, every day. Whenever a worry pops up outside that window, write it down in one l",
@@ -919,15 +978,66 @@
      "likes": 4,
      "comments": 0,
      "thumb": true
+    },
+    "DeRHUi1OKV9": {
+     "plays": {
+      "2026-10-12": 184
+     },
+     "ts": "2026-10-09T08:47:50.000Z",
+     "caption": "Harvard researchers measured what happens to your brain's sleep hormone within 30 minutes of scrolling in bed. The number surprised even them.  Not spelling out the exact number here — but it's the reason \"one more scrol",
+     "likes": 2,
+     "comments": 0,
+     "thumb": true
+    },
+    "DeYQjJPst5O": {
+     "plays": {
+      "2026-10-12": 162
+     },
+     "ts": "2026-10-12T03:23:06.000Z",
+     "caption": "UC San Francisco had one group of people take a normal walk, and another group take the exact same walk while looking for one specific thing. Only one group's stress dropped.  It's called an \"awe walk\" — instead of just ",
+     "likes": 1,
+     "comments": 0,
+     "thumb": true
+    },
+    "DeQfan0Nnml": {
+     "plays": {
+      "2026-10-12": 137
+     },
+     "ts": "2026-10-09T02:59:04.000Z",
+     "caption": "Cognitive therapists use a specific counting game to shut down a racing mind in under 90 seconds.  It's called the 5-4-3-2-1 technique: name 5 things you see, 4 you can touch, 3 you hear, 2 you smell, 1 you taste. It for",
+     "likes": 0,
+     "comments": 0,
+     "thumb": true
+    },
+    "DeWqH4-hogn": {
+     "plays": {
+      "2026-10-12": 1432
+     },
+     "ts": "2026-10-11T12:28:05.000Z",
+     "caption": "One study found a single sentence, written the night before, made people 2 to 3 times more likely to actually follow through the next day.  Not explaining the exact wording here — it's oddly specific and it's one of the ",
+     "likes": 9,
+     "comments": 0,
+     "thumb": true
+    },
+    "DeS2dVlJI5_": {
+     "plays": {
+      "2026-10-12": 179
+     },
+     "ts": "2026-10-10T00:59:01.000Z",
+     "caption": "Psychologists found your brain won't stop pinging you about an unfinished task — until you do one specific thing that has nothing to do with finishing it.  It's called the Zeigarnik Effect: an open task nags at your work",
+     "likes": 1,
+     "comments": 0,
+     "thumb": true
     }
    },
    "reel_snaps": [
-    "2026-10-09"
+    "2026-10-09",
+    "2026-10-12"
    ],
    "full_name": "The Science of Personal Effectiveness",
    "bio": "The science behind elite performance 🧠\nMonks. SEALs. Athletes. CEOs.\nWhat they know - that schools never taught you.",
    "avatar": "avatars/us.jpg"
   }
  },
- "updated": "2026-10-11 15:43"
+ "updated": "2026-10-12 18:15"
 }
