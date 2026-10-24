@@ -652,7 +652,8 @@
     "2026-10-20": 54,
     "2026-10-21": 54,
     "2026-10-22": 55,
-    "2026-10-23": 54
+    "2026-10-23": 54,
+    "2026-10-24": 54
    },
    "posts": null,
    "reels": {
@@ -1309,7 +1310,8 @@
     },
     "Dev78HCunxo": {
      "plays": {
-      "2026-10-21": 222
+      "2026-10-21": 222,
+      "2026-10-24": 237
      },
      "ts": "2026-10-21T08:04:50.000Z",
      "caption": "Researchers read short life stories that nuns wrote at 22. Then, about 60 years later, they checked who was still alive.  In the 1930s, young women joining the School Sisters of Notre Dame in the US were asked to write a",
@@ -1329,7 +1331,8 @@
     },
     "Desjld5PySj": {
      "plays": {
-      "2026-10-21": 2265
+      "2026-10-21": 2265,
+      "2026-10-24": 2266
      },
      "ts": "2026-10-20T00:34:16.000Z",
      "caption": "They told hotel maids one thing about their job. Four weeks later, their bodies had changed.  In 2007, Harvard psychologists Alia Crum and Ellen Langer worked with 84 room attendants in 7 hotels. These women were on thei",
@@ -1339,7 +1342,8 @@
     },
     "DetXJ8FPD5U": {
      "plays": {
-      "2026-10-21": 240
+      "2026-10-21": 240,
+      "2026-10-24": 242
      },
      "ts": "2026-10-20T08:05:04.000Z",
      "caption": "The judges didn't know they were doing it. But the numbers showed it day after day.  In 2011, researchers studied more than 1,000 parole decisions made by 8 experienced judges in Israel. Each working day had two food bre",
@@ -1349,7 +1353,8 @@
     },
     "Det-OpwtuLj": {
      "plays": {
-      "2026-10-21": 188
+      "2026-10-21": 188,
+      "2026-10-24": 189
      },
      "ts": "2026-10-20T13:46:22.000Z",
      "caption": "Same milkshake. Two labels. And their bodies reacted completely differently.  In 2011, Yale researcher Alia Crum gave people a milkshake on two separate visits. One time it came labeled as an indulgent 620-calorie treat.",
@@ -1369,7 +1374,8 @@
     },
     "DerYGBDNMBG": {
      "plays": {
-      "2026-10-21": 169
+      "2026-10-21": 169,
+      "2026-10-24": 169
      },
      "ts": "2026-10-19T13:34:43.000Z",
      "caption": "The kids who waited weren't more disciplined. They had a reason to believe the wait would pay off.  You probably know the marshmallow test. A child gets one marshmallow and a choice: eat it now, or wait alone for a while",
@@ -1379,11 +1385,102 @@
     },
     "DevLlgiv0xp": {
      "plays": {
-      "2026-10-21": 151
+      "2026-10-21": 151,
+      "2026-10-24": 155
      },
      "ts": "2026-10-21T01:02:20.000Z",
      "caption": "Harvard followed 724 men for over 80 years. The answer to what keeps people healthy and happy wasn't money or career.  The Harvard Study of Adult Development started in 1938. Researchers picked 268 Harvard students and 4",
      "likes": 0,
+     "comments": 0,
+     "thumb": true
+    },
+    "De0hbG3BNpz": {
+     "plays": {
+      "2026-10-24": 341
+     },
+     "ts": "2026-10-23T02:49:21.000Z",
+     "caption": "They wrote for 15 minutes a day, 4 days in a row. In the months after, they were going to the doctor less.  In 1986, psychologist James Pennebaker at Southern Methodist University asked college students to write. One gro",
+     "likes": 1,
+     "comments": 0,
+     "thumb": true
+    },
+    "De1FhpGJ2Lj": {
+     "plays": {
+      "2026-10-24": 2114
+     },
+     "ts": "2026-10-23T08:04:50.000Z",
+     "caption": "3,018 people ended their shower with cold water for a month. Their sick days at work dropped by 29%.  The study ran in the Netherlands and was published in 2016. Researchers split working adults into groups. After their ",
+     "likes": 8,
+     "comments": 0,
+     "thumb": true
+    },
+    "DewhFZcBrwC": {
+     "plays": {
+      "2026-10-24": 76
+     },
+     "ts": "2026-10-21T13:29:26.000Z",
+     "caption": "Stanford sent students on a walk. Their creative output jumped by about 60%.  In 2014, Marily Oppezzo and Daniel Schwartz ran a series of experiments. People had to come up with creative uses for ordinary objects, like a",
+     "likes": 0,
+     "comments": 0,
+     "thumb": true
+    },
+    "De1xe5GNKkh": {
+     "plays": {
+      "2026-10-24": 159
+     },
+     "ts": "2026-10-23T14:29:03.000Z",
+     "caption": "They tried not to think of a white bear. It kept coming back.  In 1987, psychologist Daniel Wegner ran a strange little experiment. He sat people alone in a room for five minutes and asked them to say out loud whatever c",
+     "likes": 1,
+     "comments": 0,
+     "thumb": true
+    },
+    "Deyh7e6MI-O": {
+     "plays": {
+      "2026-10-24": 2442
+     },
+     "ts": "2026-10-22T08:15:16.000Z",
+     "caption": "For 9 years nobody could run a mile in under four minutes. Then someone did. And 46 days later, someone else did too.  The world record had been stuck at 4:01 since 1945. The best runners on the planet kept getting close",
+     "likes": 21,
+     "comments": 0,
+     "thumb": true
+    },
+    "DezJDmiBfDR": {
+     "plays": {
+      "2026-10-24": 529
+     },
+     "ts": "2026-10-22T13:57:24.000Z",
+     "caption": "Teachers were told a few random kids were about to bloom. By the end of the year, many of them had.  In 1965, psychologist Robert Rosenthal and school principal Lenore Jacobson ran an experiment at an elementary school i",
+     "likes": 2,
+     "comments": 0,
+     "thumb": true
+    },
+    "De3nhxRt6Lb": {
+     "plays": {
+      "2026-10-24": 185
+     },
+     "ts": "2026-10-24T07:40:29.000Z",
+     "caption": "Their phone was on silent, face down on the desk. It still made them worse at thinking.  In 2017, researchers at the University of Texas at Austin ran an experiment with about 800 smartphone users. People sat down to tes",
+     "likes": 0,
+     "comments": 0,
+     "thumb": true
+    },
+    "DexrHFaBGKv": {
+     "plays": {
+      "2026-10-24": 241
+     },
+     "ts": "2026-10-22T00:16:19.000Z",
+     "caption": "The longer procedure was remembered as less painful. Same patients, more minutes of discomfort, a better memory of the whole thing.  Psychologist Daniel Kahneman and doctor Donald Redelmeier studied this with colonoscopi",
+     "likes": 0,
+     "comments": 0,
+     "thumb": true
+    },
+    "De271SHBSp6": {
+     "plays": {
+      "2026-10-24": 1304
+     },
+     "ts": "2026-10-24T01:18:42.000Z",
+     "caption": "One 5-minute meeting. A month later, their results had jumped by 171%.  Organizational psychologist Adam Grant studied a university call center. The job was rough: calling alumni and asking for scholarship donations. Mos",
+     "likes": 2,
      "comments": 0,
      "thumb": true
     }
@@ -1393,12 +1490,13 @@
     "2026-10-12",
     "2026-10-15",
     "2026-10-18",
-    "2026-10-21"
+    "2026-10-21",
+    "2026-10-24"
    ],
    "full_name": "Neuro Reset | Brain Habits",
    "bio": "Brain science you can use today 🧠\nReal studies → small habits for focus & calm\nDM \"REWIRE\" for my 21 brain drills",
    "avatar": "avatars/us.jpg"
   }
  },
- "updated": "2026-10-23 14:32"
+ "updated": "2026-10-24 13:52"
 }
